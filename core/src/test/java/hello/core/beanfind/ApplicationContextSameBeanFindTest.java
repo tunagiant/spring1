@@ -41,17 +41,17 @@ public class ApplicationContextSameBeanFindTest {
         Map<String, MemberRepository> beansOfType = ac.getBeansOfType(MemberRepository.class);
         for (String key : beansOfType.keySet()) {
             System.out.println("key = " + key + "/ value  = " + beansOfType.get(key));
-        }
+    }
         System.out.println("beansOfType = " + beansOfType);
         Assertions.assertThat(beansOfType.size()).isEqualTo(2);
-    }
+}
 
-    // 중복된 type값을 갖게 하기위해 테스트에서만 쓰는 config
-    @Configuration
-    static class SameBeanConfig {
+// 중복된 type값을 갖게 하기위해 테스트에서만 쓰는 config
+@Configuration
+static class SameBeanConfig {
 
-        @Bean
-        public MemberRepository memberRepository1() {
+    @Bean
+    public MemberRepository memberRepository1() {
             return new MemoryMemberRepository();
         }
 
