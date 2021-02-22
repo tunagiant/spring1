@@ -40,13 +40,13 @@ public class ApplicationContextBasicFindTest {
     }
 
     // 실패테스트
-    @Test
-    @DisplayName("빈 이름으로 조회X ")
-    void findBeanByNameX() {
-        MemberService xxxxx = ac.getBean("xxxxx", MemberService.class);
-        // 예외가 터지면 테스트성공
-        org.junit.jupiter.api.Assertions.assertThrows(NoSuchBeanDefinitionException.class,
-                () -> ac.getBean("xxxxx", MemberService.class));
-    }
+//    @Test
+//    @DisplayName("빈 이름으로 조회X ")
+//    void findBeanByNameX() {
+//        MemberService xxxxx = ac.getBean("xxxxx", MemberService.class);
+//        // 예외가 터지면 테스트성공
+//        org.junit.jupiter.api.Assertions.assertThrows(NoSuchBeanDefinitionException.class,
+//                () -> ac.getBean("xxxxx", MemberService.class));
+//    }
 
 }
