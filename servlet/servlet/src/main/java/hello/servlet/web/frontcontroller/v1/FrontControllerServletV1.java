@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-//Frontcontroller : HttpServlet상속     v1/하위url 어떤것이 들어와도 이 서블릿이 실행됨
+//Frontcontroller : HttpServlet상속     v1/* : v1/하위url 어떤것이 들어와도 이 서블릿이 실행됨
 @WebServlet(name = "frontControllerServletV1", urlPatterns = "/front-controller/v1/*")
 public class FrontControllerServletV1 extends HttpServlet {
 

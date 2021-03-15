@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class ModelView {
     private String viewName;
+    //(key, value) = (viewName, Member/List<Member>)
     private Map<String, Object> model = new HashMap<>();
 
     public ModelView(String viewName) {
