@@ -36,6 +36,7 @@ public class AllBeanTest {
         private final Map<String, DiscountPolicy> policyMap;
         private final List<DiscountPolicy> policies;
 
+        // Map<String, XXX>, List<XXX> 는 스프링이 XXX타입을 자동으로 추론해서 채워줌
         @Autowired  // 생성자 하나이기 때문에 생략가능
         public DiscountService(Map<String, DiscountPolicy> policyMap, List<DiscountPolicy> policies) {
             this.policyMap = policyMap;
