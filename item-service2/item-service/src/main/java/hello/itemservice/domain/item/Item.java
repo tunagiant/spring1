@@ -2,8 +2,9 @@ package hello.itemservice.domain.item;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-@Getter @Setter
+@Getter @Setter @ToString
 public class Item {
 
     private Long id;
@@ -17,4 +18,5 @@ public class Item {
         this.price = price;
         this.quantity = quantity;
     }
+
 }

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Repository
+//@Repository
 public class ItemRepository {
     private static final Map<Long, Item> store = new HashMap<>(); //static 사용
     private static long sequence = 0L; //static 사용
@@ -28,6 +28,11 @@ public class ItemRepository {
         findItem.setPrice(updateParam.getPrice());
         findItem.setQuantity(updateParam.getQuantity());
     }
+    public void delete(Long itemId) {
+        Item findItem = findById(itemId);
+        store.remove(itemId);
+    }
+
     public void clearStore() {
         store.clear();
     }
