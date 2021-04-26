@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:if="${param.status}" class="container">
+
+    <h2 class="h2">수정 되었습니다.</h2>
+    <form th:action method="post">
+        <div class="row">
+            <div class="col">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary" th:onclick="|location.href='@{/boards/main}'|">확인</button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<div th:if="!${param.status}" class="form-group">
+
+    <div>
+        <form th:action method="post">
+            <label for="name">작성자 : </label>
+            <input class="form-control" type="text" id="name" name="name" th:value="${board.name}">
+            <label for="title">제목 : </label>
+            <input class="form-control" type="text" id="title" name="title" th:value="${board.title}">
+            <label for="content">내용 : </label>
+            <textarea class="form-control" id="content" name="content" th:value="${board.content}"></textarea>
+            <div class="row">
+                <div class="col">
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary" onclick="clickUpdateBtn()">수정</button>
+                        <button type="button" class="btn btn-secondary" th:onclick="|location.href='@{/boards/{boardId}/view(boardId=${board.boardId})}'|">취소</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function clickUpdateBtn() {
+        var title = document.getElementById("title");
+        var content = document.getElementById("content");
+        if (title.value.length === 0 || content.value.length === 0) {
+            alert("제목 또는 내용이 비어있습니다.");
+            event.preventDefault();
+        }
+    }
+</script>
+
+
+</body>
+</html>

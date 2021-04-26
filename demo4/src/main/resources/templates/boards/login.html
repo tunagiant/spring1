@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Title</title>
+</head>
+<body>
+<h4 class="h4">로그인</h4>
+<div class="form-group">
+    <form th:action method="post">
+        <div>
+            <label for="id">ID : </label>
+            <input class="form-control" type="text" id="id" name="id">
+            <label for="pw">PW : </label>
+            <input class="form-control" type="password" id="pw" name="pw">
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary">로그인</button>
+                    <button type="button" class="btn btn-primary" th:onclick="|location.href='@{/boards/main}'|">취소</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

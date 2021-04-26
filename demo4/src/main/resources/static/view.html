@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+        <thead>
+        <p>글번호 : [[${view.boardId}]]</p>
+        <p>제목 : [[${view.title}]]</p>
+        <p>작성자 : [[${view.name}]]</p>
+        내용 : <textarea class="form-control" th:text="${view.content}"></textarea>
+        <p>조회수 : [[${view.readCount}]]</p>
+
+</div>
+<div class="flexBox">
+    <button id="updateBtn" onclick=location.href='/boards/1/update'>수정</button>
+    <button id="deleteBtn" onclick=location.href='/boards/1/delete'>삭제</button>
+</div>
+
+</body>
+</html>

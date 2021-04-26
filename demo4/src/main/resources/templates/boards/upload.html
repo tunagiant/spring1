@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Title</title>
+</head>
+<body>
+<div th:if="${param.status}" class="container">
+
+    <h2 class="h2">업로드 되었습니다.</h2>
+        <div class="row">
+            <div class="col">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary" th:onclick="|location.href='@{/boards/main}'|">확인</button>
+                </div>
+
+            </div>
+        </div>
+</div>
+<div th:if="!${param.status}" class="form-group">
+    <form th:action method="post">
+        <div>
+            <label for="name">작성자 : </label>
+            <input class="form-control" type="text" id="name" name="name">
+            <label for="title">제목 : </label>
+            <input class="form-control" type="text" id="title" name="title">
+            <label for="content">내용 : </label>
+            <textarea class="form-control" rows="5" id="content" name="content"></textarea>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary" onclick="clickUploadBtn();">등록</button>
+                    <button type="button" class="btn btn-primary" th:onclick="|location.href='@{/boards/main}'|">취소</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    function clickUploadBtn() {
+        var title = document.getElementById("title");
+        var content = document.getElementById("content");
+        if (title.value.length === 0 || content.value.length === 0) {
+            alert("제목 또는 내용이 비어있습니다.");
+            event.preventDefault();
+        }
+    }
+</script>
+
+</body>
+</html>

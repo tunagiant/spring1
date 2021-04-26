@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--namespace: BoardMapper의 인터페이스 경로
+BoardMapper.java와 BoardMapper.XML을 연결시켜줌-->
+<mapper namespace="com.example.demo4.mapper.BoardMapper">
+
+    <select id="getList" resultType="com.example.demo4.domain.Board">
+        SELECT * FROM tbl_board;
+    </select>
+    <select id="getBoard" parameterType="Long" resultType="com.example.demo4.domain.Board">
+        SELECT * FROM tbl_board where boardId=#{boardId};
+    </select>
+    <insert id="uploadBoard" parameterType="com.example.demo4.domain.Board">
+        INSERT INTO tbl_board (title, content, name, createDate, readCount)
+        VALUES
+        (#{title}, #{content}, #{name}, current_timestamp, 0);
+    </insert>
+    <update id="updateBoard" parameterType="com.example.demo4.domain.Board">
+        update tbl_board set name = #{name}, title = #{title}, content = #{content}, createDate = current_timestamp
+        where boardId = #{boardId};
+    </update>
+    <update id="readCountBoard" parameterType="Long">
+        update tbl_board set readCount = readCount + 1 where boardId = #{boardId};
+    </update>
+    <delete id="deleteBoard" parameterType="Long">
+        delete from tbl_board where boardId=#{boardId}
+    </delete>
+
+</mapper>
