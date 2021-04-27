@@ -1,6 +1,8 @@
 package com.example.demo4.service;
 
 import com.example.demo4.domain.Board;
+import com.example.demo4.domain.Criteria;
+import com.example.demo4.domain.SearchCriteria;
 import com.example.demo4.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,8 +20,8 @@ public class BoardService {
         return boardMapper.boardCount();
     }
 
-    public List<Board> boardList() {
-        return boardMapper.getList();
+    public List<Board> boardList(SearchCriteria criteria) {
+        return boardMapper.getList(criteria);
     }
 
     public Board getBoard(Long boardId) {

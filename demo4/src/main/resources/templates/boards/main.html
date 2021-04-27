@@ -4,6 +4,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <meta charset="UTF-8">
     <title>Title</title>
+    <style type="text/css">
+        li {list-style: none; float:left; padding:6px;}
+    </style>
 </head>
 <body>
 <div class="row justify-content-end">
@@ -41,8 +44,39 @@
     </div>
     <div class="row">
         <div class="col">
+            <ul>
+                <li th:if="${pageMaker.prev}">
+                    <a th:href="@{|/boards/main/${pageMaker.startPage - 1}|}">이전</a>
+                </li>
+                <li th:each="num : ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                    <a th:href="@{|/boards/main/${num}|}">[[${num}]]</a>
+                </li>
+                <li th:if="${pageMaker.next} and ${pageMaker.endPage} > 0">
+                    <a th:href="@{|/boards/main/${pageMaker.endPage + 1}|}">다음</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
             <button class="w-50 btn btn-primary btn-lg"
                     th:onclick="|location.href='@{/boards/upload}'|">등록</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form action="" method="GET">
+                <div>
+                    <select name="keyword" id="keyword">
+                        <option value="t">제목</option>
+                        <option value="c">내용</option>
+                        <option value="w">작성자</option>
+                        <option value="tc">제목+내용</option>
+                    </select>
+                    <input type="text" id="search" name="search">
+                    <button type="submit">검색</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -1,6 +1,8 @@
 package com.example.demo4.mapper;
 
 import com.example.demo4.domain.Board;
+import com.example.demo4.domain.Criteria;
+import com.example.demo4.domain.SearchCriteria;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,7 +11,7 @@ public interface BoardMapper {
 
     int boardCount();
 
-    List<Board> getList();
+    List<Board> getList(SearchCriteria criteria);
 
     Board getBoard(Long boardId);
 

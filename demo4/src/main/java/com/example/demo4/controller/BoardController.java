@@ -1,6 +1,9 @@
 package com.example.demo4.controller;
 
 import com.example.demo4.domain.Board;
+import com.example.demo4.domain.Criteria;
+import com.example.demo4.domain.PageMaker;
+import com.example.demo4.domain.SearchCriteria;
 import com.example.demo4.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,17 +18,21 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @GetMapping("/test")
-    public String test(Model model) {
-        model.addAttribute("cnt", boardService.boardCount());
-        model.addAttribute("test", boardService.boardList());
+//    @GetMapping("/main")
+//    public String main(Model model) {
+//        model.addAttribute("list", boardService.boardList(criteria));
+//        return "/boards/main";
+//    }
+    @GetMapping("/main/{pageNum}")
+    public String main(@PathVariable int pageNum, Model model, SearchCriteria criteria) {
+        criteria.setPage(pageNum);
+        model.addAttribute("list", boardService.boardList(criteria));
+        PageMaker pageMaker = new PageMaker();
+        pageMaker.setCriteria(criteria);
+        pageMaker.setTotalCount(boardService.boardCount());
 
-        return "/boards/hello";
-    }
+        model.addAttribute("pageMaker", pageMaker);
 
-    @GetMapping("/main")
-    public String main(Model model) {
-        model.addAttribute("list", boardService.boardList());
         return "/boards/main";
     }
 
