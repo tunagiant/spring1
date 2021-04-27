@@ -24,13 +24,13 @@ public class BoardController {
 //        return "/boards/main";
 //    }
     @GetMapping("/main/{pageNum}")
-    public String main(@PathVariable int pageNum, Model model, SearchCriteria criteria) {
+    public String main(@PathVariable int pageNum, Model model, Criteria criteria) {
         criteria.setPage(pageNum);
         model.addAttribute("list", boardService.boardList(criteria));
+        model.addAttribute("pageNum", pageNum);
         PageMaker pageMaker = new PageMaker();
         pageMaker.setCriteria(criteria);
         pageMaker.setTotalCount(boardService.boardCount());
-
         model.addAttribute("pageMaker", pageMaker);
 
         return "/boards/main";

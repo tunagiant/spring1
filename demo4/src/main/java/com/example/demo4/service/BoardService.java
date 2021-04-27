@@ -20,7 +20,7 @@ public class BoardService {
         return boardMapper.boardCount();
     }
 
-    public List<Board> boardList(SearchCriteria criteria) {
+    public List<Board> boardList(Criteria criteria) {
         return boardMapper.getList(criteria);
     }
 

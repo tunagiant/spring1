@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="hello.itemservice.mapper.mapper">
+
+    Item save(Item item);
+
+
+    void update(Long itemId, Item updateParam);
+    void delete(Long itemId);
+
+    <select id="findById" parameterType="Long" resultType="hello.itemservice.domain.item.Item">
+        SELECT * FROM item where itemId = ?;
+    </select>
+
+    <select id="findAll" resultType="hello.itemservice.domain.item.Item">
+        SELECT * FROM item;
+    </select>
+
+    <insert id="save" parameterType="hello.itemservice.domain.item.Item">
+        INSERT INTO item(id, itemName, price, quantity) VALUES (?, ?, ?, ?);
+    </insert>
+
+</mapper>

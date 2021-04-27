@@ -19,66 +19,68 @@
                 th:onclick="|location.href='@{/boards/upload}'|">회원가입</button>
     </div>
 </div>
-<div class="container-fluid">
-    <div>
-        <table class="table table-hover">
-            <thead class="thead-dark">
-            <th scope="col">글번호</th>
-            <th scope="col">작성자</th>
-            <th scope="col">제목</th>
-            <th scope="col">조회수</th>
-            <th scope="col">날짜</th>
-            </thead>
-            <tr th:each="list : ${list}">
-                <th scope="row">[[${list.boardId}]]</th>
-                <td>[[${list.name}]]</td>
-                <td>
-                    <a th:href="@{/boards/{boardId}/view(boardId=${list.boardId})}">
-                        [[${list.title}]]
-                    </a>
-                </td>
-                <td>[[${list.readCount}]]</td>
-                <td>[[${list.createDate}]]</td>
-            </tr>
-        </table>
-    </div>
-    <div class="row">
-        <div class="col">
-            <ul>
-                <li th:if="${pageMaker.prev}">
-                    <a th:href="@{|/boards/main/${pageMaker.startPage - 1}|}">이전</a>
-                </li>
-                <li th:each="num : ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-                    <a th:href="@{|/boards/main/${num}|}">[[${num}]]</a>
-                </li>
-                <li th:if="${pageMaker.next} and ${pageMaker.endPage} > 0">
-                    <a th:href="@{|/boards/main/${pageMaker.endPage + 1}|}">다음</a>
-                </li>
-            </ul>
+    <div class="container-fluid">
+        <div>
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                <th scope="col">글번호</th>
+                <th scope="col">작성자</th>
+                <th scope="col">제목</th>
+                <th scope="col">조회수</th>
+                <th scope="col">날짜</th>
+                </thead>
+                <tr th:each="list : ${list}">
+                    <th scope="row">[[${list.boardId}]]</th>
+                    <td>[[${list.name}]]</td>
+                    <td>
+                        <a th:href="@{/boards/{boardId}/view(boardId=${list.boardId})}">
+                            [[${list.title}]]
+                        </a>
+                    </td>
+                    <td>[[${list.readCount}]]</td>
+                    <td>[[${list.createDate}]]</td>
+                </tr>
+            </table>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <button class="w-50 btn btn-primary btn-lg"
-                    th:onclick="|location.href='@{/boards/upload}'|">등록</button>
+        <div class="row">
+            <div class="col">
+                <ul>
+                    <li th:if="${pageMaker.prev}">
+                        <a th:href="@{|/boards/main/${pageMaker.startPage - 1}|}">이전</a>
+                    </li>
+                    <li th:each="num : ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                        <a th:href="@{|/boards/main/${num}|}">[[${num}]]</a>
+                    </li>
+                    <li th:if="${pageMaker.next} and ${pageMaker.endPage} > 0">
+                        <a th:href="@{|/boards/main/${pageMaker.endPage + 1}|}">다음</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <form action="" method="GET">
-                <div>
-                    <select name="keyword" id="keyword">
-                        <option value="t">제목</option>
-                        <option value="c">내용</option>
-                        <option value="w">작성자</option>
-                        <option value="tc">제목+내용</option>
-                    </select>
-                    <input type="text" id="search" name="search">
-                    <button type="submit">검색</button>
-                </div>
-            </form>
+        <div class="row">
+            <div class="col">
+                <button class="w-50 btn btn-primary btn-lg"
+                        th:onclick="|location.href='@{/boards/upload}'|">등록</button>
+            </div>
         </div>
+        <!--<div class="row">-->
+            <!--<div class="col">-->
+                <!--<div>-->
+                    <!--<select name="searchType" id="searchType">-->
+                        <!--<option value="t" th:value="|${pageMaker.criteria.searchType == 't'} ? 'selected' : ''|">제목</option>-->
+                        <!--<option value="c" th:value="|${pageMaker.criteria.searchType == 'c'} ? 'selected' : ''|">내용</option>-->
+                        <!--<option value="w" th:value="|${pageMaker.criteria.searchType == 'w'} ? 'selected' : ''|">작성자</option>-->
+                        <!--<option value="tc" th:value="|${pageMaker.criteria.searchType == 'tc'} ? 'selected' : ''|">제목+내용</option>-->
+                    <!--</select>-->
+
+                    <!--<input type="text" id="keyword" name="keyword" th:value="${pageMaker.criteria.keyword}" />-->
+                    <!--<button type="submit" id="searchBtn">검색</button>-->
+                    <!--<script>-->
+                        <!--$(document).on('')-->
+                    <!--</script>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
-</div>
 </body>
 </html>

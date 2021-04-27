@@ -14,14 +14,10 @@ BoardMapper.java와 BoardMapper.XML을 연결시켜줌-->
          AND boardId > 0;
     </select>
 
-    <!--<select id="getList" parameterType="com.example.demo4.domain.Criteria" resultType="com.example.demo4.domain.Board">-->
-        <!--SELECT * FROM tbl_board WHERE boardId BETWEEN #{rowStart} AND #{rowEnd};-->
-    <!--</select>-->
-
     <select id="getList" parameterType="com.example.demo4.domain.Criteria" resultType="com.example.demo4.domain.Board">
-        SELECT * FROM (tbl_board WHERE 1=1 <include refid="search"></include>)
-        WHERE boardId BETWEEN #{rowStart} AND #{rowEnd};
+        SELECT * FROM tbl_board WHERE boardId BETWEEN #{rowStart} AND #{rowEnd};
     </select>
+
 
     <sql id="search">
         <if test="searchType != null">

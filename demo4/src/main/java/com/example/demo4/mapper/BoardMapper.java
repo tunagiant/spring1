@@ -11,7 +11,7 @@ public interface BoardMapper {
 
     int boardCount();
 
-    List<Board> getList(SearchCriteria criteria);
+    List<Board> getList(Criteria criteria);
 
     Board getBoard(Long boardId);
 
