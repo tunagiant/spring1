@@ -28,6 +28,7 @@ public class BoardController {
         criteria.setPage(pageNum);
         model.addAttribute("list", boardService.boardList(criteria));
         model.addAttribute("pageNum", pageNum);
+
         PageMaker pageMaker = new PageMaker();
         pageMaker.setCriteria(criteria);
         pageMaker.setTotalCount(boardService.boardCount());

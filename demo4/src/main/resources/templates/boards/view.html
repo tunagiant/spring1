@@ -24,7 +24,7 @@
             <div class="btn-group">
                 <button class="btn btn-primary" id="updateBtn" th:onclick="|location.href='@{/boards/{boardId}/update(boardId=${view.boardId})}'|">수정</button>
                 <button class="btn btn-danger" id="deleteBtn" th:onclick="|location.href='@{/boards/{boardId}/delete(boardId=${view.boardId})}'|">삭제</button>
-                <button class="btn btn-secondary" id="homeBtn" th:onclick="|location.href='@{/boards/main}'|">목록</button>
+                <button class="btn btn-secondary" id="homeBtn" th:onclick="|location.href='@{/boards/main/${view.boardId}'|">목록</button>
             </div>
         </div>
     </div>
