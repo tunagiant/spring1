@@ -5,51 +5,52 @@
 BoardMapper.java와 BoardMapper.XML을 연결시켜줌-->
 <mapper namespace="com.example.demo4.mapper.BoardMapper">
 
-    <!--<select id="boardCount" resultType="int">-->
-        <!--SELECT COUNT(boardId) FROM tbl_board WHERE boardId > 0;-->
-    <!--</select>-->
-
-    <select id="boardCount" resultType="int">
-        SELECT COUNT(boardId) FROM tbl_board WHERE 1=1 <include refid="search"></include>
-         AND boardId > 0;
-    </select>
-
-    <select id="getList" parameterType="com.example.demo4.domain.Criteria" resultType="com.example.demo4.domain.Board">
-        SELECT * FROM tbl_board WHERE boardId BETWEEN #{rowStart} AND #{rowEnd};
-    </select>
-
-
-    <sql id="search">
-        <if test="searchType != null">
-            <if test="searchType == 't'.toString()">AND title LIKE '%' || #{keyword} || '%'</if>
-            <if test="searchType == 'c'.toString()">AND content LIKE '%' || #{keyword} || '%'</if>
-            <if test="searchType == 'w'.toString()">AND name LIKE '%' || #{keyword} || '%'</if>
-            <if test="searchType == 'tc'.toString()">AND (title LIKE '%' || #{keyword} || '%')
-            OR (content LIKE '%' || #{keyword} || '%')</if>
-        </if>
+    <sql id="boardColumns">
+          title
+        , content
+        , writer
+        , createDate
+        , readCount
     </sql>
 
+
+    <select id="boardCount" resultType="int">
+        SELECT COUNT(idx) FROM tbl_board WHERE idx > 0;
+    </select>
+
+
+    <select id="getList" parameterType="com.example.demo4.domain.Criteria" resultType="com.example.demo4.domain.Board">
+        SELECT * FROM tbl_board WHERE idx BETWEEN #{rowStart} AND #{rowEnd};
+    </select>
+
     <select id="getBoard" parameterType="Long" resultType="com.example.demo4.domain.Board">
-        SELECT * FROM tbl_board where boardId=#{boardId};
+        SELECT * FROM tbl_board where idx=#{idx};
     </select>
 
     <insert id="uploadBoard" parameterType="com.example.demo4.domain.Board">
-        INSERT INTO tbl_board (title, content, name, createDate, readCount)
+        INSERT INTO tbl_board (
+        <include refid="boardColumns" />
+        )
         VALUES
-        (#{title}, #{content}, #{name}, current_timestamp, 0);
+        (
+          #{title}
+        , #{content}
+        , #{writer}
+        , current_timestamp
+        , 0);
     </insert>
 
     <update id="updateBoard" parameterType="com.example.demo4.domain.Board">
-        update tbl_board set name = #{name}, title = #{title}, content = #{content}, createDate = current_timestamp
-        where boardId = #{boardId};
+        update tbl_board set name = #{writer}, title = #{title}, content = #{content}, createDate = current_timestamp
+        where idx = #{idx};
     </update>
 
     <update id="readCountBoard" parameterType="Long">
-        update tbl_board set readCount = readCount + 1 where boardId = #{boardId};
+        update tbl_board set readCount = readCount + 1 where idx = #{idx};
     </update>
 
     <delete id="deleteBoard" parameterType="Long">
-        delete from tbl_board where boardId=#{boardId}
+        delete from tbl_board where idx=#{idx}
     </delete>
 
 </mapper>

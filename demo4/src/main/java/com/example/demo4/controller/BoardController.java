@@ -3,9 +3,9 @@ package com.example.demo4.controller;
 import com.example.demo4.domain.Board;
 import com.example.demo4.domain.Criteria;
 import com.example.demo4.domain.PageMaker;
-import com.example.demo4.domain.SearchCriteria;
 import com.example.demo4.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +23,12 @@ public class BoardController {
 //        model.addAttribute("list", boardService.boardList(criteria));
 //        return "/boards/main";
 //    }
+
+    @GetMapping("/main")
+    public String starting() {
+        return "/boards/start";
+    }
+
     @GetMapping("/main/{pageNum}")
     public String main(@PathVariable int pageNum, Model model, Criteria criteria) {
         criteria.setPage(pageNum);
@@ -37,10 +43,10 @@ public class BoardController {
         return "/boards/main";
     }
 
-    @GetMapping("/{boardId}/view")
-    public String viewBoard(Model model, @PathVariable Long boardId) {
-        boardService.readCountBoard(boardId);
-        model.addAttribute("view", boardService.getBoard(boardId));
+    @GetMapping("/{idx}/view")
+    public String viewBoard(Model model, @PathVariable Long idx) {
+        boardService.readCountBoard(idx);
+        model.addAttribute("view", boardService.getBoard(idx));
         return "/boards/view";
     }
 
@@ -56,32 +62,32 @@ public class BoardController {
         return "redirect:/boards/upload";
     }
 
-    @GetMapping("/{boardId}/update")
-    public String updateBoardForm(@PathVariable Long boardId, Model model) {
-        Board updateBoard = boardService.getBoard(boardId);
+    @GetMapping("/{idx}/update")
+    public String updateBoardForm(@PathVariable Long idx, Model model) {
+        Board updateBoard = boardService.getBoard(idx);
         model.addAttribute("board", updateBoard);
         return "/boards/update";
     }
 
-    @PostMapping("/{boardId}/update")
+    @PostMapping("/{idx}/update")
     public String updateBoard(Board board, RedirectAttributes redirectAttributes) {
         boardService.updateBoard(board);
         redirectAttributes.addAttribute("status", true);
-        return "redirect:/boards/{boardId}/update";
+        return "redirect:/boards/{idx}/update";
     }
 
-    @GetMapping("/{boardId}/delete")
-    public String deleteBoardForm(@PathVariable Long boardId, Model model) {
-        Board deleteBoard = boardService.getBoard(boardId);
+    @GetMapping("/{idx}/delete")
+    public String deleteBoardForm(@PathVariable Long idx, Model model) {
+        Board deleteBoard = boardService.getBoard(idx);
         model.addAttribute("board", deleteBoard);
         return "/boards/delete";
     }
 
-    @PostMapping("/{boardId}/delete")
-    public String deleteBoard(@PathVariable Long boardId, RedirectAttributes redirectAttributes) {
-        boardService.deleteBoard(boardId);
+    @PostMapping("/{idx}/delete")
+    public String deleteBoard(@PathVariable Long idx, RedirectAttributes redirectAttributes) {
+        boardService.deleteBoard(idx);
         redirectAttributes.addAttribute("status", true);
-        return "redirect:/boards/{boardId}/delete";
+        return "redirect:/boards/{idx}/delete";
     }
 
 

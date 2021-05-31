@@ -2,7 +2,6 @@ package com.example.demo4.service;
 
 import com.example.demo4.domain.Board;
 import com.example.demo4.domain.Criteria;
-import com.example.demo4.domain.SearchCriteria;
 import com.example.demo4.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,8 +23,8 @@ public class BoardService {
         return boardMapper.getList(criteria);
     }
 
-    public Board getBoard(Long boardId) {
-        return boardMapper.getBoard(boardId);
+    public Board getBoard(Long idx) {
+        return boardMapper.getBoard(idx);
     }
 
     public void uploadBoard(Board board) {
@@ -38,13 +37,13 @@ public class BoardService {
     }
 
     @Transactional
-    public void readCountBoard(Long boardId) {
-        boardMapper.readCountBoard(boardId);
+    public void readCountBoard(Long idx) {
+        boardMapper.readCountBoard(idx);
     }
 
     @Transactional
-    public void deleteBoard(Long boardId) {
-        boardMapper.deleteBoard(boardId);
+    public void deleteBoard(Long idx) {
+        boardMapper.deleteBoard(idx);
     }
 
 }

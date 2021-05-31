@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Board {
-    private Long boardId;
+    private Long idx;
     private String title;
-    private String name;
+    private String writer;
     private String content;
     private LocalDateTime createDate;
     private Long readCount;

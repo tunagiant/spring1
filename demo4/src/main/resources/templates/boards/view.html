@@ -10,9 +10,9 @@
     <div>
         <table class="table">
             <thead>
-            <p>글번호 : [[${view.boardId}]]</p>
+            <p>글번호 : [[${view.idx}]]</p>
             <p>제목 : [[${view.title}]]</p>
-            <p>작성자 : [[${view.name}]]</p>
+            <p>작성자 : [[${view.writer}]]</p>
             <p>작성자ID : [[${view.memberId}]]</p>
             <p>내용 : [[${view.content}]]</p>
             <p>조회수 : [[${view.readCount}]]</p>
@@ -22,9 +22,9 @@
     <div class="row">
         <div class="col">
             <div class="btn-group">
-                <button class="btn btn-primary" id="updateBtn" th:onclick="|location.href='@{/boards/{boardId}/update(boardId=${view.boardId})}'|">수정</button>
-                <button class="btn btn-danger" id="deleteBtn" th:onclick="|location.href='@{/boards/{boardId}/delete(boardId=${view.boardId})}'|">삭제</button>
-                <button class="btn btn-secondary" id="homeBtn" th:onclick="|location.href='@{/boards/main/${view.boardId}'|">목록</button>
+                <button class="btn btn-primary" id="updateBtn" th:onclick="|location.href='@{/boards/{idx}/update(idx=${view.idx})}'|">수정</button>
+                <button class="btn btn-danger" id="deleteBtn" th:onclick="|location.href='@{/boards/{idx}/delete(idx=${view.idx})}'|">삭제</button>
+                <button class="btn btn-secondary" id="homeBtn" th:onclick="|location.href='@{/boards/main/${view.idx}'|">목록</button>
             </div>
         </div>
     </div>

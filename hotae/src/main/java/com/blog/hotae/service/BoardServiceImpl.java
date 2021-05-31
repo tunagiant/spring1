@@ -2,8 +2,10 @@ package com.blog.hotae.service;
 
 import com.blog.hotae.domain.BoardDTO;
 import com.blog.hotae.mapper.BoardMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
@@ -51,6 +53,7 @@ public class BoardServiceImpl implements BoardService {
         List<BoardDTO> boardList = Collections.emptyList();
 
         int boardTotalCount = boardMapper.selectBoardTotalCount();
+
         if (boardTotalCount > 0) {
             boardList = boardMapper.selectBoardList();
         }

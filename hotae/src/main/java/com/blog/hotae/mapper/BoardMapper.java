@@ -9,16 +9,16 @@ import java.util.List;
 @Repository
 public interface BoardMapper {
 
-    public int insertBoard(BoardDTO param);
+    int insertBoard(BoardDTO params);
 
-    public BoardDTO selectBoardDetail(Long idx);
+    BoardDTO selectBoardDetail(Long idx);
 
-    public int updateBoard(BoardDTO params);
+    int updateBoard(BoardDTO params);
 
-    public int deleteBoard(Long idx);
+    int deleteBoard(Long idx);
 
-    public List<BoardDTO> selectBoardList();
+    List<BoardDTO> selectBoardList();
 
-    public int selectBoardTotalCount();
+    int selectBoardTotalCount();
 
 }

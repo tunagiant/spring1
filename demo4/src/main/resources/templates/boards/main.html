@@ -9,60 +9,50 @@
     </style>
 </head>
 <body>
-<div class="row justify-content-end">
-    <div class="col-4">
-        <button class="btn btn-primary btn-lg"
-                th:onclick="|location.href='@{/boards/upload}'|">로그인</button>
+<div class="container-fluid">
+    <div>
+        <table class="table table-hover">
+            <thead class="thead-dark">
+            <th scope="col">글번호</th>
+            <th scope="col">작성자</th>
+            <th scope="col">제목</th>
+            <th scope="col">조회수</th>
+            <th scope="col">날짜</th>
+            </thead>
+            <tr th:each="list : ${list}">
+                <th scope="row">[[${list.idx}]]</th>
+                <td>[[${list.writer}]]</td>
+                <td>
+                    <a th:href="@{/boards/{idx}/view(idx=${list.idx})}">
+                        [[${list.title}]]
+                    </a>
+                </td>
+                <td>[[${list.readCount}]]</td>
+                <td>[[${list.createDate}]]</td>
+            </tr>
+        </table>
     </div>
-    <div class="col-4">
-        <button class="btn btn-close-white btn-lg"
-                th:onclick="|location.href='@{/boards/upload}'|">회원가입</button>
+    <div class="row">
+        <div class="col">
+            <ul>
+                <li th:if="${pageMaker.prev}">
+                    <a th:href="@{|/boards/main/${pageMaker.startPage - 1}|}">이전</a>
+                </li>
+                <li th:each="num : ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                    <a th:href="@{|/boards/main/${num}|}">[[${num}]]</a>
+                </li>
+                <li th:if="${pageMaker.next} and ${pageMaker.endPage} > 0">
+                    <a th:href="@{|/boards/main/${pageMaker.endPage + 1}|}">다음</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button class="w-50 btn btn-primary btn-lg"
+                    th:onclick="|location.href='@{/boards/upload}'|">등록</button>
+        </div>
     </div>
 </div>
-    <div class="container-fluid">
-        <div>
-            <table class="table table-hover">
-                <thead class="thead-dark">
-                <th scope="col">글번호</th>
-                <th scope="col">작성자</th>
-                <th scope="col">제목</th>
-                <th scope="col">조회수</th>
-                <th scope="col">날짜</th>
-                </thead>
-                <tr th:each="list : ${list}">
-                    <th scope="row">[[${list.boardId}]]</th>
-                    <td>[[${list.name}]]</td>
-                    <td>
-                        <a th:href="@{/boards/{boardId}/view(boardId=${list.boardId})}">
-                            [[${list.title}]]
-                        </a>
-                    </td>
-                    <td>[[${list.readCount}]]</td>
-                    <td>[[${list.createDate}]]</td>
-                </tr>
-            </table>
-        </div>
-        <div class="row">
-            <div class="col">
-                <ul>
-                    <li th:if="${pageMaker.prev}">
-                        <a th:href="@{|/boards/main/${pageMaker.startPage - 1}|}">이전</a>
-                    </li>
-                    <li th:each="num : ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-                        <a th:href="@{|/boards/main/${num}|}">[[${num}]]</a>
-                    </li>
-                    <li th:if="${pageMaker.next} and ${pageMaker.endPage} > 0">
-                        <a th:href="@{|/boards/main/${pageMaker.endPage + 1}|}">다음</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <button class="w-50 btn btn-primary btn-lg"
-                        th:onclick="|location.href='@{/boards/upload}'|">등록</button>
-            </div>
-        </div>
-    </div>
 </body>
 </html>

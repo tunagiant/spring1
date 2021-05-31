@@ -1,7 +1,8 @@
 package com.blog.hotae.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -15,5 +16,8 @@ public class BoardDTO {
     private String noticeYn;
     private String secretYn;
     private String deleteYn;
+    private LocalDateTime insertTime;
+    private LocalDateTime updateTime;
+    private LocalDateTime deleteTime;
 
 }

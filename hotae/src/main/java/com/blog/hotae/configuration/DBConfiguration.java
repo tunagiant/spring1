@@ -46,7 +46,7 @@ public class DBConfiguration {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource());
         //mapper위치
-        factoryBean.setMapperLocations(applicationContext.getResource("classpath:/com/blog/hotae/mapper/BoardMapper.xml"));
+        factoryBean.setMapperLocations(applicationContext.getResource("classpath:/**/*Mapper.xml"));
         //domain풀패키지 생략
         factoryBean.setTypeAliasesPackage("com.blog.hotae.domain");
         //mybatis설정빈 을 설정파일로 지정(인자:밑의 mybatisConfig메서드)

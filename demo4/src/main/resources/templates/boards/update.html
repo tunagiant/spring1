@@ -24,8 +24,8 @@
 
     <div>
         <form th:action method="post">
-            <label for="name">작성자 : </label>
-            <input class="form-control" type="text" id="name" name="name" th:value="${board.name}">
+            <label for="writer">작성자 : </label>
+            <input class="form-control" type="text" id="writer" name="writer" th:value="${board.writer}">
             <label for="title">제목 : </label>
             <input class="form-control" type="text" id="title" name="title" th:value="${board.title}">
             <label for="content">내용 : </label>
@@ -34,7 +34,7 @@
                 <div class="col">
                     <div class="btn-group">
                         <button type="submit" class="btn btn-primary" onclick="clickUpdateBtn()">수정</button>
-                        <button type="button" class="btn btn-secondary" th:onclick="|location.href='@{/boards/{boardId}/view(boardId=${board.boardId})}'|">취소</button>
+                        <button type="button" class="btn btn-secondary" th:onclick="|location.href='@{/boards/{idx}/view(idx=${board.idx})}'|">취소</button>
                     </div>
                 </div>
             </div>

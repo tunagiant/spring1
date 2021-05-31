@@ -25,7 +25,7 @@
             <div class="col">
                 <div class="btn-group">
                     <button type="submit" class="btn btn-danger">삭제</button>
-                    <button type="button" class="btn btn-secondary" th:onclick="|location.href='@{/boards/{boardId}/view(boardId=${board.boardId})}'|">취소</button>
+                    <button type="button" class="btn btn-secondary" th:onclick="|location.href='@{/boards/{idx}/view(idx=${board.idx})}'|">취소</button>
                 </div>
             </div>
         </div>
